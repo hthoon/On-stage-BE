@@ -97,7 +97,7 @@ public class UserService {
             throw new GlobalException(ErrorCode.USER_NOT_FOUND);
         }
 
-        UserProfileDto userProfileDto = UserProfileDto.builder()
+        return UserProfileDto.builder()
                 .username(user.getUsername())
                 .nickname(user.getNickname())
                 .description(user.getDescription())
@@ -106,8 +106,6 @@ public class UserService {
                 .verifiedAt(user.getVerifiedAt())
                 .subscribed(user.getSubscribed())
                 .build();
-
-        return userProfileDto;
     }
 
 
@@ -265,19 +263,6 @@ public class UserService {
         userRepository.save(user);
 
         return true;
-    }
-
-
-    public void acceptVerifyRequest(String username) {
-
-        User user = userRepository.findByUsername(username);
-        if (user == null) {
-            throw new GlobalException(ErrorCode.USER_NOT_FOUND);
-        }
-
-        user.setVerified(Verified.VERIFIED);
-
-        userRepository.save(user);
     }
 
 

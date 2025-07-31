@@ -137,16 +137,6 @@ public class UserApiController {
         return ResponseEntity.ok(userService.addVerifyRequest(username, smsVerificationCheckDto));
     }
 
-    @Operation(summary = "SMS 인증을 통한 신청 확인 처리 엔드포인트", description = "관리자가 신청 요청을 수락한다.")
-    @PostMapping("/accept/{username}")
-    public ResponseEntity<Void> acceptVerifyRequest(@PathVariable String username) {
-
-        userService.acceptVerifyRequest(username);
-
-        return ResponseEntity.ok().build();
-    }
-
-
     // 유저 삭제
     @Operation(summary = "사용자 삭제(비활성화) 엔드포인트", description = "Soft Delete 방식으로 사용자를 삭제한다.")
     @DeleteMapping
